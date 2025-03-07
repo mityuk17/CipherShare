@@ -3,13 +3,13 @@ import hashlib
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 def generate_key() -> bytes:
-    """Генерирует 32-байтный ключ для AES-256."""
+    """Generates a 32-byte key for AES-256."""
     return os.urandom(32)
 
 def encrypt_data(data: str, key: bytes) -> bytes:
     """
-    Шифрует строковые данные с помощью AES-GCM.
-    Генерируется 12-байтный nonce, который объединяется с зашифрованным текстом.
+    Encrypts string data using AES-GCM.
+    A 12-byte nonce is generated and combined with the encrypted text.
     """
     aesgcm = AESGCM(key)
     nonce = os.urandom(12)
@@ -18,8 +18,8 @@ def encrypt_data(data: str, key: bytes) -> bytes:
 
 def decrypt_data(encrypted_data: bytes, key: bytes) -> str:
     """
-    Дешифрует данные, полученные функцией encrypt_data.
-    Извлекается nonce (первые 12 байт) и далее проводится расшифровка.
+    Decrypts data encrypted with the encrypt_data function.
+    Extracts the nonce (first 12 bytes) and then performs decryption.
     """
     nonce = encrypted_data[:12]
     ciphertext = encrypted_data[12:]
@@ -28,5 +28,5 @@ def decrypt_data(encrypted_data: bytes, key: bytes) -> str:
     return plaintext.decode()
 
 def hash_key(key: bytes) -> str:
-    """Вычисляет SHA-256 хеш от ключа и возвращает его в шестнадцатеричном виде."""
+    """Computes the SHA-256 hash of the key and returns it as a hexadecimal string."""
     return hashlib.sha256(key).hexdigest()

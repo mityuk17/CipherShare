@@ -10,7 +10,6 @@ class TextRecord(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.now)
     
     def is_expired(self) -> bool:
-        """Проверяет, истек ли срок действия записи."""
         if self.ttl is None:
             return False
         return datetime.now() > self.created_at + timedelta(seconds=self.ttl)

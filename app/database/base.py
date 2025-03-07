@@ -17,7 +17,7 @@ async_session = sessionmaker(
 
 async def init_db():
     """
-    Асинхронное создание таблиц при старте приложения.
+    Create tables when the application starts.
     """
     async with engine.begin() as conn:
         await conn.run_sync(SQLModel.metadata.create_all)
@@ -25,7 +25,7 @@ async def init_db():
 
 async def get_session() -> AsyncSession:
     """
-    Асинхронный генератор сессии для использования в эндпоинтах через Depends.
+    Asynchronous session generator for use in endpoints via Depends.
     """
     async with async_session() as session:
         yield session
