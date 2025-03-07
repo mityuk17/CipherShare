@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:16
     container_name: ciphershare_db
-    restart: always
+    restart: unless-stopped
     env_file: .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -19,9 +19,10 @@ services:
       timeout: 3s
 
   app:
-    build: .
+    build:
+      context: ./app
     container_name: ciphershare_app
-    restart: always
+    restart: unless-stopped
     env_file: .env
     depends_on:
       db:
@@ -55,6 +56,17 @@ services:
       - ./certs:/etc/nginx/certs
     depends_on:
       - app
+    
+    frontend:
+      build:
+        context: ./frontend
+      args:
+        - PUBLIC_API_URL=${PUBLIC_API_URL}
+      ports:
+        - "3030:3000"
+      environment:
+        - PUBLIC_API_URL=${PUBLIC_API_URL}
+      restart: unless-stopped
 
 volumes:
   pg_data:
