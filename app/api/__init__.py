@@ -1,0 +1,1 @@
+from api.text_record import router as text_record_router

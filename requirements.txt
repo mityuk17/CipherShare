@@ -1,0 +1,8 @@
+fastapi[all]
+uvicorn[standard]
+sqlmodel
+asyncpg
+cryptography
+pydantic-settings
+python-dotenv
+prometheus_fastapi_instrumentator
