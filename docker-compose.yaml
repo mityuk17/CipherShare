@@ -60,8 +60,8 @@ services:
   frontend:
     build:
       context: ./frontend
-    args:
-      - PUBLIC_API_URL=${PUBLIC_API_URL}
+      args:
+        - PUBLIC_API_URL=${PUBLIC_API_URL}
     ports:
       - "3030:3000"
     environment:
