@@ -53,7 +53,8 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./certs:/etc/nginx/certs
+      - ./certs/api:/etc/nginx/certs/api
+      - ./certs/frontend:/etc/nginx/certs/frontend
     depends_on:
       - app
     
@@ -63,7 +64,7 @@ services:
       args:
         - PUBLIC_API_URL=${PUBLIC_API_URL}
     ports:
-      - "3030:3000"
+      - "3030:3030"
     environment:
       - PUBLIC_API_URL=${PUBLIC_API_URL}
     restart: unless-stopped
