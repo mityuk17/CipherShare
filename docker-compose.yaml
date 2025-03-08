@@ -63,7 +63,7 @@ services:
       args:
         - PUBLIC_API_URL=${PUBLIC_API_URL}
     ports:
-      - "3030:3000"
+      - "3030:3030"
     environment:
       - PUBLIC_API_URL=${PUBLIC_API_URL}
     restart: unless-stopped
