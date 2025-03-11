@@ -2,6 +2,8 @@
 
 CipherShare is a secure data transfer service built with FastAPI and SQLModel. It allows users to create encrypted data records that can be retrieved using a unique code. Records can be configured as one-time (deleted after the first view) or time-limited (expire after a specified TTL, based on creation time).
 
+Video demo: https://disk.yandex.ru/i/saqMho0W-lCvKg
+
 ## Features
 - **Secure Data Transfer:** Encrypt data using AES-GCM and store only its hash.
 - **Record Expiration:** Supports one-time records or records that expire after a user-defined TTL.
